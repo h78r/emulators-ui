@@ -1,7 +1,8 @@
 export const pointer = initBind();
 
 function initBind() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isiPadOS = navigator.userAgent.includes("Macintosh") && 'ontouchend' in document; //added ipad fix
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || isiPadOS;
     const isTouch = isMobile && !!("ontouchstart" in window);
     const isPointer = isMobile && (window.PointerEvent ? true : false);
     const isMSPointer = isMobile && ((window as any).MSPointerEvent ? true : false);
